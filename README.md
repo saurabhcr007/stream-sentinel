@@ -1,6 +1,6 @@
 # Stream Sentinel
 
-**Production-ready, cloud-native anomaly detection and alert engine for real-time event streams.**
+**cloud-native anomaly detection and alert engine for real-time event streams.**
 
 Stream Sentinel consumes events from Apache Kafka, runs configurable anomaly-detection rules via Apache Flink, and publishes alerts back to Kafka — all deployable on Kubernetes with Prometheus-compatible observability.
 
@@ -378,3 +378,7 @@ Built with:
 - [Prometheus](https://prometheus.io/)
 - [Jackson](https://github.com/FasterXML/jackson)
 - [SnakeYAML](https://bitbucket.org/snakeyaml/snakeyaml)
+
+---
+
+Made by AI And [Saurabh chuadhary](https://github.com/saurabhcr007)
