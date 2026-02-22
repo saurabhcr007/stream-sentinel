@@ -1,0 +1,35 @@
+# Stream Sentinel – .gitignore
+
+# Build output
+target/
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Maven
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Logs
+*.log
+
+# Docker
+docker/tmp/

@@ -1,0 +1,8 @@
+# Stream Sentinel – Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: stream-sentinel
+  labels:
+    app.kubernetes.io/name: stream-sentinel
+    app.kubernetes.io/part-of: stream-sentinel

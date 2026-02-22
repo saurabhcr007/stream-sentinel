@@ -1,0 +1,25 @@
+# =============================================================================
+# Stream Sentinel – Detection Rules (classpath default)
+# =============================================================================
+# This file ships inside the JAR as a fallback when no external
+# RULES_CONFIG_PATH is provided.
+# =============================================================================
+
+rules:
+  - name: high_rate
+    type: rate
+    keyField: userId
+    windowSeconds: 10
+    threshold: 5
+
+  - name: high_amount
+    type: threshold
+    field: amount
+    threshold: 10000
+
+  - name: unusual_amount
+    type: statistical
+    field: amount
+    windowSize: 20
+    deviationFactor: 2.5
+    threshold: 0

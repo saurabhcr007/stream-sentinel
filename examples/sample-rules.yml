@@ -1,0 +1,30 @@
+# =============================================================================
+# Stream Sentinel – Example Rules
+# =============================================================================
+# Copy this file and customise for your workload. Set the RULES_CONFIG_PATH
+# environment variable to point to your copy.
+# =============================================================================
+
+rules:
+  # Detect rapid-fire activity: flag any userId that generates > 5 events
+  # within a 10-second sliding window.
+  - name: high_rate
+    type: rate
+    keyField: userId
+    windowSeconds: 10
+    threshold: 5
+
+  # Flag individual transactions with amount > 10,000.
+  - name: high_amount
+    type: threshold
+    field: amount
+    threshold: 10000
+
+  # Flag amounts that deviate from the per-user moving average by more
+  # than 2.5 standard deviations (based on the last 20 values).
+  - name: unusual_amount
+    type: statistical
+    field: amount
+    windowSize: 20
+    deviationFactor: 2.5
+    threshold: 0

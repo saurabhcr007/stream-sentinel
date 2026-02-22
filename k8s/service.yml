@@ -1,0 +1,22 @@
+# Stream Sentinel – Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: stream-sentinel
+  namespace: stream-sentinel
+  labels:
+    app.kubernetes.io/name: stream-sentinel
+    app.kubernetes.io/component: flink-job
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: stream-sentinel
+  ports:
+    - name: health
+      port: 8080
+      targetPort: health
+      protocol: TCP
+    - name: metrics
+      port: 9249
+      targetPort: metrics
+      protocol: TCP

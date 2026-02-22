@@ -1,0 +1,41 @@
+[
+  {"userId": "user_001", "amount": 250.00, "timestamp": "2024-01-15T10:00:00Z", "merchantId": "merch_42", "category": "grocery", "deviceId": "dev_abc"},
+  {"userId": "user_001", "amount": 300.50, "timestamp": "2024-01-15T10:00:01Z", "merchantId": "merch_42", "category": "grocery", "deviceId": "dev_abc"},
+  {"userId": "user_001", "amount": 45.00, "timestamp": "2024-01-15T10:00:02Z", "merchantId": "merch_11", "category": "dining", "deviceId": "dev_abc"},
+  {"userId": "user_001", "amount": 125.75, "timestamp": "2024-01-15T10:00:03Z", "merchantId": "merch_22", "category": "retail", "deviceId": "dev_abc"},
+  {"userId": "user_001", "amount": 89.99, "timestamp": "2024-01-15T10:00:04Z", "merchantId": "merch_33", "category": "online", "deviceId": "dev_abc"},
+  {"userId": "user_001", "amount": 55.00, "timestamp": "2024-01-15T10:00:05Z", "merchantId": "merch_44", "category": "grocery", "deviceId": "dev_abc"},
+
+  {"userId": "user_002", "amount": 15000.00, "timestamp": "2024-01-15T10:01:00Z", "merchantId": "merch_99", "category": "luxury", "deviceId": "dev_xyz"},
+  {"userId": "user_002", "amount": 25000.00, "timestamp": "2024-01-15T10:01:30Z", "merchantId": "merch_88", "category": "electronics", "deviceId": "dev_xyz"},
+
+  {"userId": "user_003", "amount": 100.00, "timestamp": "2024-01-15T10:02:00Z", "merchantId": "merch_10", "category": "grocery", "deviceId": "dev_111"},
+  {"userId": "user_003", "amount": 102.00, "timestamp": "2024-01-15T10:02:05Z", "merchantId": "merch_10", "category": "grocery", "deviceId": "dev_111"},
+  {"userId": "user_003", "amount": 99.50, "timestamp": "2024-01-15T10:02:10Z", "merchantId": "merch_10", "category": "grocery", "deviceId": "dev_111"},
+  {"userId": "user_003", "amount": 105.00, "timestamp": "2024-01-15T10:02:15Z", "merchantId": "merch_10", "category": "grocery", "deviceId": "dev_111"},
+  {"userId": "user_003", "amount": 98.00, "timestamp": "2024-01-15T10:02:20Z", "merchantId": "merch_10", "category": "grocery", "deviceId": "dev_111"},
+  {"userId": "user_003", "amount": 5000.00, "timestamp": "2024-01-15T10:02:25Z", "merchantId": "merch_77", "category": "travel", "deviceId": "dev_111"},
+
+  {"userId": "user_004", "amount": 75.00, "timestamp": "2024-01-15T10:03:00Z", "merchantId": "merch_55", "category": "food", "deviceId": "dev_222"},
+  {"userId": "user_004", "amount": 82.00, "timestamp": "2024-01-15T10:03:01Z", "merchantId": "merch_55", "category": "food", "deviceId": "dev_222"},
+  {"userId": "user_004", "amount": 79.50, "timestamp": "2024-01-15T10:03:02Z", "merchantId": "merch_55", "category": "food", "deviceId": "dev_222"},
+  {"userId": "user_004", "amount": 85.00, "timestamp": "2024-01-15T10:03:03Z", "merchantId": "merch_55", "category": "food", "deviceId": "dev_222"},
+  {"userId": "user_004", "amount": 77.00, "timestamp": "2024-01-15T10:03:04Z", "merchantId": "merch_55", "category": "food", "deviceId": "dev_222"},
+  {"userId": "user_004", "amount": 83.00, "timestamp": "2024-01-15T10:03:05Z", "merchantId": "merch_55", "category": "food", "deviceId": "dev_222"},
+
+  {"userId": "user_005", "amount": 500.00, "timestamp": "2024-01-15T10:04:00Z", "merchantId": "merch_66", "category": "retail", "deviceId": "dev_333"},
+  {"userId": "user_005", "amount": 520.00, "timestamp": "2024-01-15T10:04:30Z", "merchantId": "merch_66", "category": "retail", "deviceId": "dev_333"},
+  {"userId": "user_005", "amount": 490.00, "timestamp": "2024-01-15T10:05:00Z", "merchantId": "merch_66", "category": "retail", "deviceId": "dev_333"},
+  {"userId": "user_005", "amount": 510.00, "timestamp": "2024-01-15T10:05:30Z", "merchantId": "merch_66", "category": "retail", "deviceId": "dev_333"},
+
+  {"userId": "user_006", "amount": 10.00, "timestamp": "2024-01-15T10:06:00Z", "merchantId": "merch_01", "category": "snacks", "deviceId": "dev_444"},
+  {"userId": "user_006", "amount": 12.50, "timestamp": "2024-01-15T10:06:01Z", "merchantId": "merch_01", "category": "snacks", "deviceId": "dev_444"},
+  {"userId": "user_006", "amount": 9.00, "timestamp": "2024-01-15T10:06:02Z", "merchantId": "merch_01", "category": "snacks", "deviceId": "dev_444"},
+  {"userId": "user_006", "amount": 11.00, "timestamp": "2024-01-15T10:06:03Z", "merchantId": "merch_01", "category": "snacks", "deviceId": "dev_444"},
+  {"userId": "user_006", "amount": 10.50, "timestamp": "2024-01-15T10:06:04Z", "merchantId": "merch_01", "category": "snacks", "deviceId": "dev_444"},
+  {"userId": "user_006", "amount": 50000.00, "timestamp": "2024-01-15T10:06:05Z", "merchantId": "merch_01", "category": "snacks", "deviceId": "dev_444"},
+
+  {"userId": "user_007", "amount": 200.00, "timestamp": "2024-01-15T10:07:00Z", "merchantId": "merch_77", "category": "travel", "deviceId": "dev_555"},
+  {"userId": "user_007", "amount": 1800.00, "timestamp": "2024-01-15T10:07:30Z", "merchantId": "merch_77", "category": "travel", "deviceId": "dev_555"},
+  {"userId": "user_007", "amount": 350.00, "timestamp": "2024-01-15T10:08:00Z", "merchantId": "merch_77", "category": "travel", "deviceId": "dev_555"}
+]

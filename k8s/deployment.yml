@@ -1,0 +1,99 @@
+# Stream Sentinel – Flink Job Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stream-sentinel
+  namespace: stream-sentinel
+  labels:
+    app.kubernetes.io/name: stream-sentinel
+    app.kubernetes.io/component: flink-job
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: stream-sentinel
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: stream-sentinel
+        app.kubernetes.io/component: flink-job
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9249"
+    spec:
+      containers:
+        - name: stream-sentinel
+          image: stream-sentinel:latest
+          imagePullPolicy: IfNotPresent
+
+          # Override the entrypoint to run as a standalone Flink job
+          command:
+            - "/docker-entrypoint.sh"
+          args:
+            - "standalone-job"
+            - "--job-classname"
+            - "com.streamsentinel.flink.StreamSentinelJob"
+
+          ports:
+            - name: health
+              containerPort: 8080
+              protocol: TCP
+            - name: metrics
+              containerPort: 9249
+              protocol: TCP
+
+          env:
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka.default.svc.cluster.local:9092"
+            - name: KAFKA_INPUT_TOPIC
+              value: "events"
+            - name: KAFKA_ALERT_TOPIC
+              value: "alerts"
+            - name: KAFKA_GROUP_ID
+              value: "stream-sentinel"
+            - name: FLINK_PARALLELISM
+              value: "2"
+            - name: FLINK_CHECKPOINT_INTERVAL_MS
+              value: "60000"
+            - name: RULES_CONFIG_PATH
+              value: "/etc/stream-sentinel/rules.yml"
+            - name: HEALTH_PORT
+              value: "8080"
+            - name: DEFAULT_KEY_FIELD
+              value: "userId"
+
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "2Gi"
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: health
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: health
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          volumeMounts:
+            - name: rules-config
+              mountPath: /etc/stream-sentinel
+              readOnly: true
+
+      volumes:
+        - name: rules-config
+          configMap:
+            name: stream-sentinel-rules

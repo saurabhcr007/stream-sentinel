@@ -1,0 +1,12 @@
+# Test rules for unit tests
+rules:
+  - name: test_rate
+    type: rate
+    keyField: userId
+    windowSeconds: 5
+    threshold: 3
+
+  - name: test_threshold
+    type: threshold
+    field: amount
+    threshold: 500

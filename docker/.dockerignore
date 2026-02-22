@@ -1,0 +1,14 @@
+.git
+.gitignore
+*.md
+target/
+**/target/
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+k8s/
+docker/
+examples/

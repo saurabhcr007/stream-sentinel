@@ -1,0 +1,15 @@
+kafka:
+  bootstrapServers: "localhost:9092"
+  inputTopic: "events"
+  alertTopic: "alerts"
+  groupId: "stream-sentinel"
+
+flink:
+  parallelism: 1
+  checkpointIntervalMs: 60000
+
+health:
+  port: 8080
+
+defaultKeyField: "userId"
+
