@@ -1,0 +1,203 @@
+.metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metricCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.metricHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.metricLabel {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.metricIconWrap {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metricValue {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.metricTrend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mainContentGrid {
+    display: grid;
+    grid-template-columns: 3fr 1.5fr;
+    gap: 1.5rem;
+}
+
+.chartSection {
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chartContainer {
+    flex: 1;
+    width: 100%;
+    min-height: 350px;
+}
+
+/* Custom Recharts Tooltip */
+.chartTooltip {
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.tooltipTime {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.tooltipItems {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tooltipItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.tooltipColorIndicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.tooltipName {
+    color: var(--text-secondary);
+}
+
+.tooltipValue {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-left: auto;
+    padding-left: 1rem;
+}
+
+/* Alerts Section */
+.alertsSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.alertsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.alertsList {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.alertItem {
+    display: flex;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.alertItem:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.alertIconWrap {
+    margin-top: 0.25rem;
+}
+
+.statusDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.alertContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.alertRuleName {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.alertTime {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+.alertMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.alertKey {
+    color: var(--text-secondary);
+    font-family: monospace;
+    background-color: var(--bg-dark);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+.alertDetail {
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+    .metricsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mainContentGrid {
+        grid-template-columns: 1fr;
+    }
+}

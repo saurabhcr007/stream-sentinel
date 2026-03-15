@@ -1,0 +1,84 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+/* Sizes */
+.sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+.md {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+}
+
+.lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.05rem;
+}
+
+/* Variants */
+.primary {
+    background-color: var(--accent-cyan);
+    color: #000;
+    border: 1px solid transparent;
+}
+
+.primary:hover {
+    background-color: var(--accent-cyan-hover);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.secondary {
+    background-color: var(--bg-card-hover);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+}
+
+.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.outline {
+    background-color: transparent;
+    color: var(--accent-cyan);
+    border: 1px solid var(--accent-cyan);
+}
+
+.outline:hover {
+    background-color: var(--accent-cyan-dim);
+}
+
+.ghost {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+}
+
+.ghost:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.danger {
+    background-color: transparent;
+    color: var(--color-critical);
+    border: 1px solid var(--color-critical-dim);
+}
+
+.danger:hover {
+    background-color: var(--color-critical-dim);
+}

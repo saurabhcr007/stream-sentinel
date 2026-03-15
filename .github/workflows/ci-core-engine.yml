@@ -1,0 +1,29 @@
+name: CI - Core Engine
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+    paths:
+      - 'core-engine/**'
+      - 'pom.xml'
+  pull_request:
+    branches: [ "main", "develop", "release/*", "hotfix/*" ]
+    paths:
+      - 'core-engine/**'
+      - 'pom.xml'
+
+jobs:
+  test-core-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build and test Core Engine
+        run: mvn clean test -pl core-engine -B
