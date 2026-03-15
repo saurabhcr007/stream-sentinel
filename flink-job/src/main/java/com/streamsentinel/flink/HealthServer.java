@@ -43,28 +43,24 @@ public class HealthServer {
      * @param port TCP port to bind to; must be in range [1, 65535]
      * @throws IllegalArgumentException if port is out of range
      */
-    public void start(int port) {
+    public void start(int port) throws IOException {
         if (port < 1 || port > 65_535) {
             throw new IllegalArgumentException(
                     "Health port must be in range [1, 65535], got: " + port);
         }
-        try {
-            server = HttpServer.create(new InetSocketAddress(port), 0);
-            server.createContext("/health", HealthServer::handleHealthCheck);
-            server.createContext("/readiness", HealthServer::handleHealthCheck);
+        server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/health", HealthServer::handleHealthCheck);
+        server.createContext("/readiness", HealthServer::handleHealthCheck);
 
-            server.setExecutor(Executors.newSingleThreadExecutor(r -> {
-                Thread t = new Thread(r, "health-server");
-                t.setDaemon(true);
-                return t;
-            }));
+        server.setExecutor(Executors.newSingleThreadExecutor(r -> {
+            Thread t = new Thread(r, "health-server");
+            t.setDaemon(true);
+            return t;
+        }));
 
-            server.start();
-            running.set(true);
-            LOG.info("Health server started on port {}", port);
-        } catch (IOException e) {
-            LOG.error("Failed to start health server on port {}: {}", port, e.getMessage(), e);
-        }
+        server.start();
+        running.set(true);
+        LOG.info("Health server started on port {}", port);
     }
 
     /**

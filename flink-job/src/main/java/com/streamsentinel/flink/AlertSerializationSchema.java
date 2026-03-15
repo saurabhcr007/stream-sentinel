@@ -25,7 +25,7 @@ public class AlertSerializationSchema implements SerializationSchema<Alert> {
             return objectMapper().writeValueAsBytes(alert);
         } catch (Exception e) {
             LOG.error("Failed to serialize alert: {}", e.getMessage(), e);
-            return new byte[0];
+            return null;
         }
     }
 

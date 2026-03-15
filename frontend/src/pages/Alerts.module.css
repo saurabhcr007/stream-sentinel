@@ -1,0 +1,345 @@
+.alertsContainer {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 64px);
+    /* Full height minus top nav */
+}
+
+/* Filter Bar */
+.filterBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    width: 350px;
+}
+
+.searchBox:focus-within {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.1);
+}
+
+.searchInput {
+    border: none;
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.searchInput:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.filterControls {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.filterLabel {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.filterSelect {
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.35rem 0.5rem;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* Stats Row */
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    padding: 1.25rem 1.5rem;
+}
+
+.statHeader {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Main Grid */
+.contentGrid {
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+    min-height: 0;
+    /* Important for scrollable flex children */
+}
+
+.tableCard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.tableShrink {
+    flex: 0 0 65%;
+}
+
+.tableWrapper {
+    flex: 1;
+    overflow: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-card);
+    padding: 1rem 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 10;
+}
+
+.table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.95rem;
+}
+
+.tableRow {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.tableRow:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.rowSelected {
+    background-color: var(--accent-cyan-dim) !important;
+}
+
+.codeInline {
+    font-family: monospace;
+    background-color: var(--bg-dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.tablePagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    background-color: var(--bg-card);
+}
+
+/* Detail Drawer */
+.detailDrawer {
+    flex: 0 0 calc(35% - 1.5rem);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.drawerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.drawerTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.closeBtn {
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.closeBtn:hover {
+    color: var(--text-primary);
+}
+
+.drawerContent {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.detailGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+}
+
+.detailItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detailLabel {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.detailValue {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.timelineSection {
+    margin-bottom: 2.5rem;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--border-subtle);
+    margin-left: 0.5rem;
+}
+
+.timelineEvent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.timelineDot {
+    position: absolute;
+    left: -0.85rem;
+    top: 0.25rem;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.timelineTime {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+}
+
+.timelineText {
+    color: var(--text-primary);
+}
+
+.jsonSection {
+    margin-bottom: 1rem;
+}
+
+.codeBlock {
+    background-color: var(--bg-dark);
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    overflow-x: auto;
+    color: #A78BFA;
+    /* Purple JSON keys feel */
+    font-family: monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.drawerFooter {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    gap: 1rem;
+}
+
+.fullWidth {
+    flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .tableShrink {
+        flex: 0 0 50%;
+    }
+
+    .detailDrawer {
+        flex: 0 0 calc(50% - 1.5rem);
+    }
+}

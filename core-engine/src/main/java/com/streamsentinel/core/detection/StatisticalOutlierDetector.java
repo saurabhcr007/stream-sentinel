@@ -21,6 +21,13 @@ import java.util.Optional;
  * average by more than {@code deviationFactor × σ} (standard deviation).
  * </p>
  *
+ * <h3>Performance</h3>
+ * <p>
+ * Uses <strong>Welford's online algorithm</strong> to maintain running
+ * mean and variance in O(1) per event, rather than recomputing from the
+ * entire window on each evaluation.
+ * </p>
+ *
  * <h3>State</h3>
  * <p>
  * This is a <strong>stateful</strong> detector — each instance tracks the
@@ -49,8 +56,16 @@ public class StatisticalOutlierDetector implements AnomalyDetector {
     private final int windowSize;
     private final double deviationFactor;
 
-    /** Sliding window of recent values. */
+    /** Sliding window of recent values (for eviction tracking). */
     private final Deque<Double> window = new ArrayDeque<>();
+
+    // --- Welford's online algorithm running state ---
+
+    /** Running sum of values in the window. */
+    private double runningSum = 0.0;
+
+    /** Running sum of squared values in the window. */
+    private double runningSumSquares = 0.0;
 
     /**
      * @param rule the detection rule configuration
@@ -121,10 +136,7 @@ public class StatisticalOutlierDetector implements AnomalyDetector {
 
         // Update window (after check so the current value doesn't influence its own
         // evaluation)
-        window.addLast(value);
-        if (window.size() > windowSize) {
-            window.pollFirst();
-        }
+        addValue(value);
 
         return result;
     }
@@ -135,23 +147,39 @@ public class StatisticalOutlierDetector implements AnomalyDetector {
     }
 
     // ---------------------------------------------------------------
-    // Statistics helpers
+    // Welford's online algorithm helpers
     // ---------------------------------------------------------------
 
-    private double computeMean() {
-        double sum = 0;
-        for (double v : window) {
-            sum += v;
+    /**
+     * Add a value to the sliding window, maintaining running statistics.
+     */
+    private void addValue(double value) {
+        window.addLast(value);
+        runningSum += value;
+        runningSumSquares += value * value;
+
+        // Evict oldest if window is full
+        if (window.size() > windowSize) {
+            double evicted = window.pollFirst();
+            runningSum -= evicted;
+            runningSumSquares -= evicted * evicted;
         }
-        return sum / window.size();
     }
 
+    /**
+     * O(1) mean computation from running sum.
+     */
+    private double computeMean() {
+        return runningSum / window.size();
+    }
+
+    /**
+     * O(1) standard deviation from running sum of squares.
+     */
     private double computeStdDev(double mean) {
-        double sumSquaredDiff = 0;
-        for (double v : window) {
-            double diff = v - mean;
-            sumSquaredDiff += diff * diff;
-        }
-        return Math.sqrt(sumSquaredDiff / window.size());
+        // Var = E[X²] - (E[X])²
+        double variance = (runningSumSquares / window.size()) - (mean * mean);
+        // Guard against floating-point rounding producing tiny negative values
+        return Math.sqrt(Math.max(0.0, variance));
     }
 }

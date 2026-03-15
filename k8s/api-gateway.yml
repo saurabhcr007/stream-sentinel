@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stream-sentinel-api-gateway
+  namespace: stream-sentinel
+  labels:
+    app: api-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: stream-sentinel/api-gateway:latest # To be replaced by CI/CD tag
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: stream-sentinel-config
+          env:
+            - name: PORT
+              value: "3001"
+            - name: RULES_CONFIG_PATH
+              value: "/app/config/rules.yml"
+          volumeMounts:
+            - name: rules-volume
+              mountPath: /app/config
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3001
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      volumes:
+        - name: rules-volume
+          configMap:
+            name: stream-sentinel-rules
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stream-sentinel-api-gateway
+  namespace: stream-sentinel
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001

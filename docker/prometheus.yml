@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'flink'
+    static_configs:
+      - targets: ['jobmanager:9249', 'taskmanager:9249']
+        # If Flink is configured with a Prometheus reporter, it exposes metrics on 9249
+        
+  - job_name: 'api-gateway'
+    static_configs:
+      - targets: ['api-gateway:3001']

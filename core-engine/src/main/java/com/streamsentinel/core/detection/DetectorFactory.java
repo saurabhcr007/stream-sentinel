@@ -4,7 +4,6 @@ import com.streamsentinel.core.model.DetectionRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -65,9 +64,8 @@ public final class DetectorFactory {
     public static List<AnomalyDetector> createAll(List<DetectionRule> rules) {
         Objects.requireNonNull(rules, "Rules list must not be null");
         LOG.info("Creating {} detector(s) from configuration", rules.size());
-        List<AnomalyDetector> detectors = rules.stream()
+        return rules.stream()
                 .map(DetectorFactory::create)
                 .toList();
-        return Collections.unmodifiableList(detectors);
     }
 }

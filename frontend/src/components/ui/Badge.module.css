@@ -1,0 +1,60 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.info {
+    background-color: var(--color-info-dim);
+    color: #60A5FA;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.success {
+    background-color: var(--color-success-dim);
+    color: var(--color-success);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.warning {
+    background-color: var(--color-warning-dim);
+    color: var(--color-warning);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.critical {
+    background-color: var(--color-critical-dim);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.accentCyan {
+    background-color: var(--accent-cyan-dim);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.accentPurple {
+    background-color: var(--accent-purple-dim);
+    color: #A78BFA;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.accentOrange {
+    background-color: var(--accent-orange-dim);
+    color: #FB923C;
+    border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.default {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+}

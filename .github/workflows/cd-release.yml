@@ -1,0 +1,85 @@
+name: CD - Release
+
+on:
+  push:
+    tags: [ 'v*.*.*' ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  # Ensure you set these secrets in your repository settings
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+
+jobs:
+  build-and-push-images:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Flink Job
+        id: meta-flink
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-flink
+            ${{ env.DOCKERHUB_USERNAME }}/stream-sentinel-flink
+
+      - name: Build and push Flink Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: docker/flink.Dockerfile
+          push: true
+          tags: ${{ steps.meta-flink.outputs.tags }}
+          labels: ${{ steps.meta-flink.outputs.labels }}
+
+      - name: Extract metadata (tags, labels) for API Gateway
+        id: meta-api
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-api-gateway
+            ${{ env.DOCKERHUB_USERNAME }}/stream-sentinel-api-gateway
+
+      - name: Build and push API Gateway Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: docker/api-gateway.Dockerfile
+          push: true
+          tags: ${{ steps.meta-api.outputs.tags }}
+          labels: ${{ steps.meta-api.outputs.labels }}
+
+      - name: Extract metadata (tags, labels) for Frontend
+        id: meta-frontend
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
+            ${{ env.DOCKERHUB_USERNAME }}/stream-sentinel-frontend
+
+      - name: Build and push Frontend Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: docker/frontend.Dockerfile
+          push: true
+          tags: ${{ steps.meta-frontend.outputs.tags }}
+          labels: ${{ steps.meta-frontend.outputs.labels }}
